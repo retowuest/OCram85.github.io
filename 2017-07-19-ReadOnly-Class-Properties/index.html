@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>OCram85.github.io - Powershell Classes with readonly properties</title>
+
+  <meta name="author" content="OCram85" />
+
+  
+  <meta name="description" content="A short story about how to create and use them.">
+  
+
+  <link rel="alternate" type="application/rss+xml" title="OCram85.github.io - A personal blog about Poweshell, Automation and more." href="/feed.xml" />
+
+  
+
+  
+  <meta name="google-site-verification" content="mR7a1gt3MOM9w2PBMfwsJ2QyOwA8emkKgSFj5bvLgbU" />
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/extend-home.css" />
+    
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Powershell Classes with readonly properties" />
+  
+
+   
+  <meta property="og:description" content="A short story about how to create and use them.">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/" />
+  <link rel="canonical" href="http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/" />
+  
+
+  
+  <meta property="og:image" content="http://OCram85.github.io/img/image/vader_cube.png" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tar_honar" />
+  <meta name="twitter:creator" content="@tar_honar" />
+
+  
+  <meta name="twitter:title" content="Powershell Classes with readonly properties" />
+  
+
+  
+  <meta name="twitter:description" content="A short story about how to create and use them.">
+  
+
+  
+  <meta name="twitter:image" content="http://OCram85.github.io/img/image/vader_cube.png" />
+  
+
+  
+  <!-- Piwik -->
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//piwik.beaver-net.ovh/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', '2']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Piwik Code -->
+
+
+
+</head>
+
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://OCram85.github.io">OCram85.github.io</a>
+        
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+        <li class="navlinks-container">
+          <a class="navlinks-parent" href="javascript:void(0)">Blog</a>
+          <div class="navlinks-children">
+            
+              
+              
+            
+
+
+
+
+
+<a href="/blog">Posts</a>
+
+              
+            
+              
+              
+            
+
+
+
+
+
+<a href="/tags">Tags</a>
+
+              
+            
+          </div>
+        </li>
+         
+          
+        <li class="navlinks-container">
+          <a class="navlinks-parent" href="javascript:void(0)">About</a>
+          <div class="navlinks-children">
+            
+              
+              
+            
+
+
+
+
+
+<a href="/aboutme">Me</a>
+
+              
+            
+              
+              
+            
+
+
+
+
+
+<a href="/aboutthisblog">This Blog</a>
+
+              
+            
+          </div>
+        </li>
+         
+
+        
+        <li>
+          <a href="/search" class="nav-search-link" title="Search">
+              <span class="fa fa-search nav-search-icon"></span>
+            </a>
+        </li>
+        
+      </ul>
+    </div>
+
+    
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+  <div id="header-big-imgs" data-num-img=1
+    
+	  
+	  
+	    
+		  data-img-src-1="/img/bigimg/vader_wide.png"
+		
+	  
+    
+  ></div>
+
+
+<header class="header-section has-img">
+
+<div class="big-img intro-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Powershell Classes with readonly properties</h1>
+		  
+		    
+			<h2 class="post-subheading">A short story about how to create and use them.</h2>
+			
+		  
+		  
+		  
+		  <span class="post-meta">Posted on July 19, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class='img-desc'></span>
+</div>
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Powershell Classes with readonly properties</h1>
+		  
+		    
+			<h2 class="post-subheading">A short story about how to create and use them.</h2>
+			
+		  
+		  
+		  
+		  <span class="post-meta">Posted on July 19, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      
+      <article role="main" class="blog-post">
+        <div class="about-container">
+    <div class="about-container-header" data-toggle="collapse" data-target="#aboutcontent" title="Display a summary about this page.">
+        <p class="about-container-heading about-font-default">
+            <i class="fa fa-paperclip about-font-out" aria-hidden="true"></i>
+            <span class="about-prompt">
+                ~&gt;
+            </span>
+            <span class="about-font-cmd">
+                Get-Help
+            </span>
+            -Name
+            <span class="about-font-string">
+                    'About_ThisPage'</span>
+        </p>
+    </div>
+    <div class="about-container-content  collapse" id="aboutcontent">
+        <p class="about-font-out">
+            
+                This post is about preventing direct access to class properties with C# like getter and setter methods. It shows the syntax and usage of two different approaches. It ends with full github gist example you can work with in future.
+            
+            <span class="blinking-cursor">|</span>
+        </p>
+    </div>
+</div>
+
+<p class="box-note"><i class="fa fa-commenting" aria-hidden="true"></i> <strong>Note:</strong> If you’re not familiar with Powershell classes I suggest you reading this awesome
+blog article from  Michael Willis
+<a href="https://xainey.github.io/2016/powershell-classes-and-concepts/">Powershell v5 Classes &amp; Concepts</a>. It covers
+everything your need to know about classes.</p>
+
+<h1 id="background">Background</h1>
+
+<p>So lets start with some thoughts about the underlying situation. We assume there is a complex class structure and we
+don’t want others to mess with our data. Or maybe we need to protect our data but still need to expose it.</p>
+
+<p>Therefore we can’t define our class like the following example:</p>
+
+<div class="language-powershell highlighter-rouge"><pre class="highlight"><code><span class="k">Class </span>DeathStar <span class="o">{</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">]</span><span class="nv">$Class</span> <span class="o">=</span> <span class="s1">'Space battle station'</span>
+    <span class="o">[</span><span class="kt">Int</span><span class="o">]</span><span class="nv">$Width</span> <span class="o">=</span> <span class="s1">'160000'</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">[]]</span><span class="nv">$HyperDriveRating</span> <span class="o">=</span> @<span class="o">(</span><span class="s1">'Class 4'</span>, <span class="s1">'Class 20'</span><span class="o">)</span>
+    <span class="nv">$Crew</span> <span class="o">=</span> @<span class="o">{</span>
+        ImperialNavy <span class="o">=</span> 342953
+        Stormtroopers <span class="o">=</span> 25984
+    <span class="o">}</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">]</span><span class="nv">$Ready</span> <span class="o">=</span> <span class="nv">$null</span>
+
+    DeathStar <span class="o">()</span> <span class="o">{</span>
+        <span class="nv">$this</span>.Ready <span class="o">=</span> <span class="nv">$true</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>With this class definition we can easily create an instance and take a look at the default displayed properties:</p>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code>~&gt; $DeathStarOne = [DeathStar]::New()
+~&gt; $DeathStarOne
+
+Class            : Space battle station
+Width            : 160000
+HyperDriveRating : {Class 4, Class 20}
+Crew             : {Stormtroopers, ImperialNavy}
+Ready            : True
+</code></pre>
+</div>
+
+<p>Furthermore the rebellion could manipulate sensitive data of our death star if we would publish the death start
+class like this. Let’s do this with the <code class="highlighter-rouge">Ready</code> property and the available crew members:</p>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code>~&gt; $DeathStarOne.Ready = $false
+~&gt; $DeathStartOne
+
+Class            : Space battle station
+Width            : 160000
+HyperDriveRating : {Class 4, Class 20}
+Crew             : {Stormtroopers, ImperialNavy}
+State            : False
+
+~&gt; $DeathStarOne.Crew.ImperialNavy = 0
+~&gt; $DeathStarOne.Crew
+
+Name                           Value
+----                           -----
+Stormtroopers                  0
+ImperialNavy                   342953
+</code></pre>
+</div>
+
+<p>Although Powershell doesn’t have real readonly class properties, we can mimic them in two elegant ways:</p>
+
+<ul>
+  <li>Class methods as getter and setter functions</li>
+  <li>Script properties with getter and setter functions.</li>
+</ul>
+
+<p>Both of them rely to the same concept of using C# like getter and setter functions. But reading and writing
+the values differs.</p>
+
+<h1 id="using-class-methods">Using class methods</h1>
+
+<p>To isolate our sensitive data we first need to mark the sensitive properties as <code class="highlighter-rouge">hidden</code>. Hidden properties won’t
+get listed as object members unless we use the <code class="highlighter-rouge">Get-Member</code> function with the <code class="highlighter-rouge">-Force</code> switch.</p>
+
+<p>Additionally I like adding an underscore <em>(<code class="highlighter-rouge">_</code>)</em> as prefix to my variable names. We use the properties with
+underscores alter on.</p>
+
+<div class="language-powershell highlighter-rouge"><pre class="highlight"><code><span class="k">Class </span>DeathStar <span class="o">{</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">]</span><span class="nv">$Class</span> <span class="o">=</span> <span class="s1">'Space battle station'</span>
+    <span class="o">[</span><span class="kt">Int</span><span class="o">]</span><span class="nv">$Width</span> <span class="o">=</span> <span class="s1">'160000'</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">[]]</span><span class="nv">$HyperDriveRating</span> <span class="o">=</span> @<span class="o">(</span><span class="s1">'Class 4'</span>, <span class="s1">'Class 20'</span><span class="o">)</span>
+    hidden <span class="nv">$_Crew</span> <span class="o">=</span> @<span class="o">{</span>
+        ImperialNavy <span class="o">=</span> 342953
+        Stormtroopers <span class="o">=</span> 25984
+    <span class="o">}</span>
+    hidden <span class="o">[</span><span class="kt">String</span><span class="o">]</span><span class="nv">$_Ready</span> <span class="o">=</span> <span class="nv">$null</span>
+
+    DeathStar <span class="o">()</span> <span class="o">{</span>
+        <span class="nv">$this</span>._Ready <span class="o">=</span> <span class="nv">$true</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>With the customized class definition we check again our default output and members:</p>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code>~&gt; $DeathStarOne = [DeathStar]::New()
+~&gt; $DeathStarOne | Format-List
+
+Class            : Space battle station
+Width            : 160000
+HyperDriveRating : {Class 4, Class 20}
+</code></pre>
+</div>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code>~&gt; $DeathStarOne | Get-Member
+
+TypeName: DeathStar
+
+Name             MemberType Definition
+----             ---------- ----------
+Equals           Method     bool Equals(System.Object obj)
+GetHashCode      Method     int GetHashCode()
+GetType          Method     type GetType()
+ToString         Method     string ToString()
+Class            Property   string Class {get;set;}
+HyperDriveRating Property   string[] HyperDriveRating {get;set;}
+Width            Property   int Width {get;set;}
+</code></pre>
+</div>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code>~&gt; $DeathStarOne | Get-Member -Force
+
+    TypeName: DeathStar
+
+Name                 MemberType   Definition
+----                 ----------   ----------
+Equals               Method       bool Equals(System.Object obj)
+GetHashCode          Method       int GetHashCode()
+GetType              Method       type GetType()
+ToString             Method       string ToString()
+Class                Property     string Class {get;set;}
+HyperDriveRating     Property     string[] HyperDriveRating {get;set;}
+Width                Property     int Width {get;set;}
+pstypenames          CodeProperty System.Collections.ObjectModel.Collection`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] pstypenames{...
+psadapted            MemberSet    psadapted {Class, Width, HyperDriveRating, get_Class, set_Class, get_Width, set_Width, get_HyperDriveRating, set_HyperDriveRating, get__Crew, set__Cre...
+psbase               MemberSet    psbase {Class, Width, HyperDriveRating, get_Class, set_Class, get_Width, set_Width, get_HyperDriveRating, set_HyperDriveRating, get__Crew, set__Crew, ...
+psextended           MemberSet    psextended {}
+psobject             MemberSet    psobject {BaseObject, Members, Properties, Methods, ImmediateBaseObject, TypeNames, get_Members, get_Properties, get_Methods, get_ImmediateBaseObject,...
+Equals               Method       bool Equals(System.Object obj)
+GetHashCode          Method       int GetHashCode()
+GetType              Method       type GetType()
+get_Class            Method       string get_Class()
+get_HyperDriveRating Method       string[] get_HyperDriveRating()
+get_Width            Method       int get_Width()
+get__Crew            Method       System.Object get__Crew()
+get__Ready           Method       string get__Ready()
+set_Class            Method       void set_Class(string )
+set_HyperDriveRating Method       void set_HyperDriveRating(string[] )
+set_Width            Method       void set_Width(int )
+set__Crew            Method       void set__Crew(System.Object )
+set__Ready           Method       void set__Ready(string )
+ToString             Method       string ToString()
+Class                Property     string Class {get;set;}
+HyperDriveRating     Property     string[] HyperDriveRating {get;set;}
+Width                Property     int Width {get;set;}
+_Crew                Property     System.Object _Crew {get;set;}
+_Ready               Property     string _Ready {get;set;}
+</code></pre>
+</div>
+
+<p>Next step is to add individual getter and setter methods to access the hidden variable. In our scenario we don’t
+need the setter part, because that’s the action we want to restrict. But to show you the syntax I added the <code class="highlighter-rouge">SetCrew</code>
+method.</p>
+
+<div class="language-powershell highlighter-rouge"><pre class="highlight"><code><span class="k">Class </span>DeathStar <span class="o">{</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">]</span><span class="nv">$Class</span> <span class="o">=</span> <span class="s1">'Space battle station'</span>
+    <span class="o">[</span><span class="kt">Int</span><span class="o">]</span><span class="nv">$Width</span> <span class="o">=</span> <span class="s1">'160000'</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">[]]</span><span class="nv">$HyperDriveRating</span> <span class="o">=</span> @<span class="o">(</span><span class="s1">'Class 4'</span>, <span class="s1">'Class 20'</span><span class="o">)</span>
+    hidden <span class="nv">$_Crew</span> <span class="o">=</span> @<span class="o">{</span>
+        ImperialNavy <span class="o">=</span> 342953
+        Stormtroopers <span class="o">=</span> 25984
+    <span class="o">}</span>
+    hidden <span class="o">[</span><span class="kt">string</span><span class="o">]</span><span class="nv">$_Ready</span> <span class="o">=</span> <span class="nv">$null</span>
+
+    DeathStar <span class="o">()</span> <span class="o">{</span>
+        <span class="nv">$this</span>._Ready <span class="o">=</span> <span class="nv">$true</span>
+    <span class="o">}</span>
+
+    <span class="o">[</span><span class="kt">string</span><span class="o">]</span> GetReady <span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nv">$this</span>._Ready
+    <span class="o">}</span>
+
+    <span class="o">[</span><span class="kt">string</span><span class="o">]</span> GetCrew <span class="o">([</span><span class="kt">string</span><span class="o">]</span><span class="nv">$Type</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nv">$this</span>._Crew.<span class="nv">$Type</span>
+    <span class="o">}</span>
+
+    SetCrew <span class="o">([</span><span class="kt">string</span><span class="o">]</span><span class="nv">$Type</span>, <span class="o">[</span><span class="kt">Int</span><span class="o">]</span><span class="nv">$Value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nb">Write-Warning</span> <span class="s1">'Apology accepted, Captain Needa.'</span>
+        <span class="nv">$this</span>._Crew.<span class="nv">$Type</span> <span class="o">=</span> <span class="nv">$Value</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>If you take a look at the members again, you get now a list off all <em>public</em> properties and methods we’ve created.</p>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code>~&gt; $DeathStarOne | Get-Member
+
+   TypeName: DeathStar
+
+Name             MemberType Definition
+----             ---------- ----------
+Equals           Method     bool Equals(System.Object obj)
+GetCrew          Method     string GetCrew(string Type)
+GetHashCode      Method     int GetHashCode()
+GetReady         Method     string GetReady()
+GetType          Method     type GetType()
+SetCrew          Method     void SetCrew(string Type, int Value)
+ToString         Method     string ToString()
+Class            Property   string Class {get;set;}
+HyperDriveRating Property   string[] HyperDriveRating {get;set;}
+Width            Property   int Width {get;set;}
+</code></pre>
+</div>
+
+<p>That’s it. Now you can access to your data while using the methods <code class="highlighter-rouge">GetCrew()</code>, <code class="highlighter-rouge">SetCrew()</code> and <code class="highlighter-rouge">GetReady()</code>. Keep
+in mind you can always isolate properties with methods like this as an kind of interface.</p>
+
+<p class="box-warning"><i class="fa fa-bolt" aria-hidden="true"></i> <strong>WARNING:</strong> If you work with complex classes containing a huge amount of public and hidden
+properties, this could get a problem. Because the way how you get and set values depends now on either it’s a
+property or methods. So you could loose track of all members and how to work with them.</p>
+
+<h1 id="using-script-properties">Using Script Properties</h1>
+
+<p>Script properties are special class members which executes <code class="highlighter-rouge">get</code> or <code class="highlighter-rouge">set</code> methods depending on the action.</p>
+
+<p>You can add script properties to the well known <em>PSCustomObject</em> or classes. Therefore you can use the
+<code class="highlighter-rouge">Add-Member</code> function as well.</p>
+
+<p>Here is a simple example with a <em>PSCustomObject</em> to show the syntax:</p>
+
+<div class="language-powershell highlighter-rouge"><pre class="highlight"><code><span class="nv">$MyXWing</span> <span class="o">=</span> <span class="o">[</span>PSCustomObject]@<span class="o">{</span>
+    <span class="s1">'Model'</span> <span class="o">=</span> <span class="s1">'T-65'</span>
+    <span class="s1">'Class'</span> <span class="o">=</span> <span class="s1">'Starfighter'</span>
+    <span class="s1">'Crew'</span> <span class="o">=</span> @<span class="o">{</span>
+        <span class="s1">'Pilot'</span> <span class="o">=</span> 1
+        <span class="s1">'Astromech Droid'</span> <span class="o">=</span> 1
+    <span class="o">}</span>
+    <span class="s1">'_Ready'</span> <span class="o">=</span> <span class="nv">$true</span>
+<span class="o">}</span>
+
+<span class="nv">$MyXWing</span> | <span class="nb">Add-Member</span> -Name <span class="s1">'Ready'</span> -MemberType ScriptProperty -Value <span class="o">{</span>
+    <span class="c1"># Getter</span>
+    <span class="k">return</span> <span class="nv">$this</span>._Ready
+<span class="o">}</span> -SecondValue <span class="o">{</span>
+    <span class="c1"># Setter</span>
+    <span class="nb">Write-Warning</span> <span class="s1">'This is a readonly property!'</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code>~&gt; $MyXWing | Format-List
+
+Model  : T-65
+Class  : Starfighter
+Crew   : {Pilot, Astromech Droid}
+_Ready : True
+Ready  : True
+
+~&gt; $MyXWing.Ready
+True
+
+~&gt; $MyXWing.Ready = $false
+WARNING: This is a readonly property!
+</code></pre>
+</div>
+
+<p>If we want to use the script property in a class we have to create it in the class constructor.
+The class constructor knows the keyword <code class="highlighter-rouge">$this</code> which refers to te current object.</p>
+
+<div class="language-powershell highlighter-rouge"><pre class="highlight"><code><span class="k">Class </span>DeathStar <span class="o">{</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">]</span><span class="nv">$Class</span> <span class="o">=</span> <span class="s1">'Space battle station'</span>
+    <span class="o">[</span><span class="kt">Int</span><span class="o">]</span><span class="nv">$Width</span> <span class="o">=</span> <span class="s1">'160000'</span>
+    <span class="o">[</span><span class="kt">String</span><span class="o">[]]</span><span class="nv">$HyperDriveRating</span> <span class="o">=</span> @<span class="o">(</span><span class="s1">'Class 4'</span>, <span class="s1">'Class 20'</span><span class="o">)</span>
+    <span class="nv">$Crew</span> <span class="o">=</span> @<span class="o">{</span>
+        ImperialNavy <span class="o">=</span> 342953
+        Stormtroopers <span class="o">=</span> 25984
+    <span class="o">}</span>
+    hidden <span class="o">[</span><span class="kt">String</span><span class="o">]</span><span class="nv">$_Ready</span> <span class="o">=</span> <span class="nv">$null</span>
+
+    DeathStar <span class="o">()</span> <span class="o">{</span>
+        <span class="nv">$this</span>._Ready <span class="o">=</span> <span class="nv">$true</span>
+        <span class="nv">$this</span> | <span class="nb">Add-Member</span> -MemberType ScriptProperty -Name <span class="s1">'Ready'</span> -Value <span class="o">{</span>
+            <span class="c1"># Getter</span>
+            <span class="k">return</span> <span class="nv">$this</span>._Ready
+        <span class="o">}</span> -SecondValue <span class="o">{</span>
+            <span class="c1"># Setter</span>
+            <span class="nb">Write-Warning</span> <span class="s1">'This is a readonly property!'</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code>~&gt; $DeathStarOne = [DeathStar]::New()
+~&gt; $DeathStarOne
+
+Ready            : True
+Class            : Space battle station
+Width            : 160000
+HyperDriveRating : {Class 4, Class 20}
+Crew             : {Stormtroopers, ImperialNavy}
+
+~&gt; $DeathStarOne | Get-Member | Format-Table
+
+   TypeName: DeathStar
+
+Name             MemberType     Definition
+----             ----------     ----------
+Equals           Method         bool Equals(System.Object obj)
+GetHashCode      Method         int GetHashCode()
+GetType          Method         type GetType()
+ToString         Method         string ToString()
+Class            Property       string Class {get;set;}
+Crew             Property       System.Object Crew {get;set;}
+HyperDriveRating Property       string[] HyperDriveRating {get;set;}
+Width            Property       int Width {get;set;}
+Ready            ScriptProperty System.Object Ready {get=...
+</code></pre>
+</div>
+
+<p>And that’s exactly what we wanted. We have hidden the the property <code class="highlighter-rouge">_Ready</code> and exposed a script property called
+<code class="highlighter-rouge">Ready</code>. We can now get or set the values of to the script property like we would do it with a <em>normal</em> property.</p>
+
+<h1 id="final-conclusion">Final Conclusion</h1>
+
+<p>I personally like using <em>script properties</em>. But I take is on step further and create all public properties with a
+separate method:</p>
+
+<script src="https://gist.github.com/OCram85/d673764614438493afaa5cd413999436.js?file=AddPublicMember.ps1"> </script>
+
+<p>This avoids making errors if I work with multiple constructors. Without a method like <code class="highlighter-rouge">AddPublicMember</code> you are
+forced to define each public property in every constructor method.</p>
+
+<p>All you have to do is to add the <code class="highlighter-rouge">AddPublicMember</code>method to your class definition and call it in every constructor.</p>
+
+<p>Finally our death start class looks like this:</p>
+
+<script src="https://gist.github.com/OCram85/d673764614438493afaa5cd413999436.js?file=DeathStarClass.ps1"> </script>
+
+<p>So what do you think? - Feel free to discuss this in the comment section down below.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tags/#Classes">Classes</a>
+          
+            <a href="/tags/#Properties">Properties</a>
+          
+            <a href="/tags/#Powershell">Powershell</a>
+          
+          
+        </div>
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+  <!--- Share on Twitter -->
+    <a href="https://twitter.com/intent/tweet?text=Powershell+Classes+with+readonly+properties+http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fa fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+  <!--- Share on Facebook -->
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fa fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+
+  
+  <!--- Share on LinkedIn -->
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fa fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2017-06-28-First-Post/" data-toggle="tooltip" data-placement="top" title="First Post">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/2017-08-24-New-Series/" data-toggle="tooltip" data-placement="top" title="Announcing a new series: The Debugger Tales">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          <div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'OCram85';
+        /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+    ﻿<footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/OCram85" title="GitHub">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </li>
+          
+      
+          <li>
+            <a href="https://twitter.com/tar_honar" title="Twitter">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">Twitter</span>
+            </a>
+          </li>
+          
+    
+      
+      
+          <li>
+            <a href="mailto:marco.blessing@googlemail.com" title="Email me">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">Email me</span>
+            </a>
+          </li>
+          
+      
+          <li>
+            <a href="https://linkedin.com/in/marco-blessing-884642109" title="LinkedIn">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </li>
+          
+      
+      
+      
+      
+      
+      
+      
+      
+          <li>
+            <a href="/feed.xml" title="RSS">
+              <span class="fa-stack fa-lg" aria-hidden="true">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+              <span class="sr-only">RSS</span>
+            </a>
+          </li>
+          
+          
+      
+      
+        </ul>
+        <p class="copyright text-muted">
+            <i class="fa fa-copyright" aria-hidden="true"></i> OCram85
+      &nbsp;&bull;&nbsp;
+      2017
+
+      
+      &nbsp;&bull;&nbsp;
+      <a href="/impressum"> Impressum </a>
+      &nbsp;&bull;&nbsp;
+      <a href="/sitemap"> Sitemap </a>
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Theme based on
+      <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>.</br>
+      Background pattern from <a href="https://www.toptal.com/designers/subtlepatterns/">Subtle Patterns</a>
+    </p>
+    <p>
+    <a href="https://ci.appveyor.com/project/OCram85/ocram85-github-io">
+      <img src="https://ci.appveyor.com/api/projects/status/atp3ce1umykavrdn?svg=true" class="img-responsive center-block" data-toggle="tooltip" title="Build 82">
+    </a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+
+  </body>
+</html>

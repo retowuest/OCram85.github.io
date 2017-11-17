@@ -1,24 +1,65 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}</link>
-    <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:20 %}
+    <title>OCram85.github.io</title>
+    <description>A personal blog about Poweshell, Automation and more.</description>
+    <link>http://OCram85.github.io</link>
+    <atom:link href="http://OCram85.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
+        <title>Page Summaries in Powershell Style</title>
         <description>
-          {% if post.subtitle %}{{ post.subtitle | xml_escape }} - {% endif %}
-          {{ post.content | strip_html | xml_escape | truncatewords: 50 }}
+          ...made with include files and liquid tags - 
+          I often start writing a post or page and end up with much more content than I thought at the beginning. So I started adding a little summary section like this: {: .text-muted} As mentioned earlier, I will post powershell and automation related stuff here. I've already started thinking about...
         </description>
-        <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-        <link>{{ site.url }}{{ post.url }}</link>
-        <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+        <pubDate>Tue, 24 Oct 2017 00:00:00 +0100</pubDate>
+        <link>http://OCram85.github.io/2017-10-24-PageSummary/</link>
+        <guid isPermaLink="true">http://OCram85.github.io/2017-10-24-PageSummary/</guid>
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>The Debugger Tales #1</title>
+        <description>
+          Environment Variables In Scheduled Tasks - 
+          ~&amp;gt; Get-Help -Name 'About_TheDebuggerTales#1' This post covers a short story about why you shouldn't use profile related environment vars in scripts. Especially if you need to run them as scheduled tasks. | The Scenario I recently worked on a controller script to synchronize new active directory users with a two-factor...
+        </description>
+        <pubDate>Fri, 25 Aug 2017 00:00:00 +0100</pubDate>
+        <link>http://OCram85.github.io/2017-08-25-Environment-Vars-In-Scheduled-Tasks/</link>
+        <guid isPermaLink="true">http://OCram85.github.io/2017-08-25-Environment-Vars-In-Scheduled-Tasks/</guid>
+      </item>
+    
+      <item>
+        <title>Announcing a new series: The Debugger Tales</title>
+        <description>
+          
+          Hey Powershell friends, I’m thinking about starting a new series called The Debugger Tales. In this series I would like to share my experience in solving unique powershell problems. The problems itself will be practical examples which could appear in your daily business. With this knowledge you should easily avoid...
+        </description>
+        <pubDate>Thu, 24 Aug 2017 00:00:00 +0100</pubDate>
+        <link>http://OCram85.github.io/2017-08-24-New-Series/</link>
+        <guid isPermaLink="true">http://OCram85.github.io/2017-08-24-New-Series/</guid>
+      </item>
+    
+      <item>
+        <title>Powershell Classes with readonly properties</title>
+        <description>
+          A short story about how to create and use them. - 
+          ~&amp;gt; Get-Help -Name 'About_ThisPage' This post is about preventing direct access to class properties with C# like getter and setter methods. It shows the syntax and usage of two different approaches. It ends with full github gist example you can work with in future. | Note: If you’re not familiar...
+        </description>
+        <pubDate>Wed, 19 Jul 2017 00:00:00 +0100</pubDate>
+        <link>http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/</link>
+        <guid isPermaLink="true">http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/</guid>
+      </item>
+    
+      <item>
+        <title>First Post</title>
+        <description>
+          ...on my fresh baked blog - 
+          As mentioned earlier, I will post powershell and automation related stuff here. I’ve already started thinking about the following posts. Hosting a jekyll blog with incompatible plugins on Github.com While I created this blog I noticed that there are several plugins for jekyll which caused build errors on github. Yes...
+        </description>
+        <pubDate>Wed, 28 Jun 2017 00:00:00 +0100</pubDate>
+        <link>http://OCram85.github.io/2017-06-28-First-Post/</link>
+        <guid isPermaLink="true">http://OCram85.github.io/2017-06-28-First-Post/</guid>
+      </item>
+    
   </channel>
 </rss>

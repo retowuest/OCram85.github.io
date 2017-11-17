@@ -6,12 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>OCram85.github.io - Blog</title>
+  <title>OCram85.github.io - Tags</title>
 
   <meta name="author" content="OCram85" />
 
-  
-  <meta name="description" content="Recent posts">
   
 
   <link rel="alternate" type="application/rss+xml" title="OCram85.github.io - A personal blog about Poweshell, Automation and more." href="/feed.xml" />
@@ -51,6 +49,10 @@
   
 
   
+    
+      <link rel="stylesheet" href="/css/tags.css" />
+    
+  
 
   
 
@@ -58,19 +60,19 @@
   
 
   
-  <meta property="og:title" content="Blog" />
+  <meta property="og:title" content="Tags" />
   
 
    
-  <meta property="og:description" content="Recent posts">
+  <meta property="og:description" content="{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %} {% assign tags_list = site_tags | split:',' | sort %} {% for item in (0..site.tags.size) %}{% unless forloop.last %}{% capture this_word %}{{ tags_list[item] | strip_newlines }}{% endcapture %}...">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://OCram85.github.io/blog/" />
-  <link rel="canonical" href="http://OCram85.github.io/blog/" />
+  <meta property="og:url" content="http://OCram85.github.io/tags" />
+  <link rel="canonical" href="http://OCram85.github.io/tags" />
   
 
   
@@ -84,11 +86,11 @@
   <meta name="twitter:creator" content="@tar_honar" />
 
   
-  <meta name="twitter:title" content="Blog" />
+  <meta name="twitter:title" content="Tags" />
   
 
   
-  <meta name="twitter:description" content="Recent posts">
+  <meta name="twitter:description" content="{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %} {% assign tags_list = site_tags | split:',' | sort %} {% for item in (0..site.tags.size) %}{% unless forloop.last %}{% capture this_word %}{{ tags_list[item] | strip_newlines }}{% endcapture %}...">
   
 
   
@@ -240,12 +242,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-heading">
-          <h1>Blog</h1>
-		  
-		    
-            <hr class="small">
-            <span class="page-subheading">Recent posts</span>
-			
+          <h1>Tags</h1>
 		  
 		  
 		  
@@ -262,206 +259,81 @@
 <div class="container" role="main">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <div class="posts-list">
+      
+<p><a href="#Classes" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> Classes<a></a>
+<a href="#Environment Vars" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> Environment Vars<a></a>
+<a href="#General" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> General<a></a>
+<a href="#Jekyll" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> Jekyll<a></a>
+<a href="#PageSummary" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> PageSummary<a></a>
+<a href="#Powershell" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> Powershell<a></a>
+<a href="#Properties" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> Properties<a></a>
+<a href="#Scheduled Tasks" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> Scheduled Tasks<a></a>
+<a href="#The Debugger Tales" class="btn btn-primary"><i class="fa fa-tag" aria-hidden="true"></i> The Debugger Tales<a></a></a></a></a></a></a></a></a></a></a></p>
+
+<h3 id="Classes"><i class="fa fa-tag" aria-hidden="true"></i> Classes</h3>
+<ul class="post-list">
   
-  <article class="post-preview">
-    <a href="/2017-10-24-PageSummary/">
-      <h2 class="post-title">Page Summaries in Powershell Style</h2>
-
-      
-      <h3 class="post-subtitle">
-        ...made with include files and liquid tags
-      </h3>
-      
-    </a>
-
-    <p class="post-meta">
-      Posted on October 24, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-image">
-        <a href="/2017-10-24-PageSummary/">
-          <img src="/img/image/jekyll_post.jpg">
-        </a>
-      </div>
-      
-      <div class="post-entry">
-        This post shows how to create simple page summaries for those who just need the facts!  
-        <a href="/2017-10-24-PageSummary/" class="post-read-more">[Read&nbsp;More]</a> 
-      </div>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags:  
-      <a href="/tags/#PageSummary">PageSummary</a> 
-      <a href="/tags/#Jekyll">Jekyll</a>  
-    </div>
-    
-
-  </article>
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-07-19T00:00:00+01:00">July 19, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/">Powershell Classes with readonly properties</a></li>
   
-  <article class="post-preview">
-    <a href="/2017-08-25-Environment-Vars-In-Scheduled-Tasks/">
-      <h2 class="post-title">The Debugger Tales #1</h2>
+  </ul>
 
-      
-      <h3 class="post-subtitle">
-        Environment Variables In Scheduled Tasks
-      </h3>
-      
-    </a>
-
-    <p class="post-meta">
-      Posted on August 25, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-image">
-        <a href="/2017-08-25-Environment-Vars-In-Scheduled-Tasks/">
-          <img src="/img/image/tdt1.png">
-        </a>
-      </div>
-      
-      <div class="post-entry">
-        This post covers a short story about why you shouldn't use profile related environment vars in scripts. Especially if you need to run them as scheduled tasks.  
-        <a href="/2017-08-25-Environment-Vars-In-Scheduled-Tasks/" class="post-read-more">[Read&nbsp;More]</a> 
-      </div>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags:  
-      <a href="/tags/#The Debugger Tales">The Debugger Tales</a> 
-      <a href="/tags/#Scheduled Tasks">Scheduled Tasks</a> 
-      <a href="/tags/#Environment Vars">Environment Vars</a>  
-    </div>
-    
-
-  </article>
+<h3 id="Environment Vars"><i class="fa fa-tag" aria-hidden="true"></i> Environment Vars</h3>
+<ul class="post-list">
   
-  <article class="post-preview">
-    <a href="/2017-08-24-New-Series/">
-      <h2 class="post-title">Announcing a new series: The Debugger Tales</h2>
-
-      
-    </a>
-
-    <p class="post-meta">
-      Posted on August 24, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-image">
-        <a href="/2017-08-24-New-Series/">
-          <img src="/img/first-post.jpg">
-        </a>
-      </div>
-      
-      <div class="post-entry">
-        Hey Powershell friends,
-
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-08-25T00:00:00+01:00">August 25, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-08-25-Environment-Vars-In-Scheduled-Tasks/">The Debugger Tales #1</a></li>
   
-        <a href="/2017-08-24-New-Series/" class="post-read-more">[Read&nbsp;More]</a> 
-      </div>
-    </div>
+  </ul>
 
-    
-    <div class="blog-tags">
-      Tags:  
-      <a href="/tags/#General">General</a>  
-    </div>
-    
-
-  </article>
+<h3 id="General"><i class="fa fa-tag" aria-hidden="true"></i> General</h3>
+<ul class="post-list">
   
-  <article class="post-preview">
-    <a href="/2017-07-19-ReadOnly-Class-Properties/">
-      <h2 class="post-title">Powershell Classes with readonly properties</h2>
-
-      
-      <h3 class="post-subtitle">
-        A short story about how to create and use them.
-      </h3>
-      
-    </a>
-
-    <p class="post-meta">
-      Posted on July 19, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-image">
-        <a href="/2017-07-19-ReadOnly-Class-Properties/">
-          <img src="/img/image/vader_cube.png">
-        </a>
-      </div>
-      
-      <div class="post-entry">
-        This post is about preventing direct access to class properties with C# like getter and setter methods. It shows the syntax and usage of two different approaches. It ends with full github gist example you can work with in future.  
-        <a href="/2017-07-19-ReadOnly-Class-Properties/" class="post-read-more">[Read&nbsp;More]</a> 
-      </div>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags:  
-      <a href="/tags/#Classes">Classes</a> 
-      <a href="/tags/#Properties">Properties</a> 
-      <a href="/tags/#Powershell">Powershell</a>  
-    </div>
-    
-
-  </article>
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-08-24T00:00:00+01:00">August 24, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-08-24-New-Series/">Announcing a new series: The Debugger Tales</a></li>
   
-  <article class="post-preview">
-    <a href="/2017-06-28-First-Post/">
-      <h2 class="post-title">First Post</h2>
-
-      
-      <h3 class="post-subtitle">
-        ...on my fresh baked blog
-      </h3>
-      
-    </a>
-
-    <p class="post-meta">
-      Posted on June 28, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-image">
-        <a href="/2017-06-28-First-Post/">
-          <img src="/img/first-post.jpg">
-        </a>
-      </div>
-      
-      <div class="post-entry">
-        As mentioned earlier, I will post powershell and automation related stuff here. I’ve already started
-thinking about the following posts.
-
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-06-28T00:00:00+01:00">June 28, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-06-28-First-Post/">First Post</a></li>
   
-        <a href="/2017-06-28-First-Post/" class="post-read-more">[Read&nbsp;More]</a> 
-      </div>
-    </div>
+  </ul>
 
-    
-    <div class="blog-tags">
-      Tags:  
-      <a href="/tags/#General">General</a>  
-    </div>
-    
-
-  </article>
+<h3 id="Jekyll"><i class="fa fa-tag" aria-hidden="true"></i> Jekyll</h3>
+<ul class="post-list">
   
-</div>
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-10-24T00:00:00+01:00">October 24, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-10-24-PageSummary/">Page Summaries in Powershell Style</a></li>
+  
+  </ul>
 
+<h3 id="PageSummary"><i class="fa fa-tag" aria-hidden="true"></i> PageSummary</h3>
+<ul class="post-list">
+  
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-10-24T00:00:00+01:00">October 24, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-10-24-PageSummary/">Page Summaries in Powershell Style</a></li>
+  
+  </ul>
+
+<h3 id="Powershell"><i class="fa fa-tag" aria-hidden="true"></i> Powershell</h3>
+<ul class="post-list">
+  
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-07-19T00:00:00+01:00">July 19, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/">Powershell Classes with readonly properties</a></li>
+  
+  </ul>
+
+<h3 id="Properties"><i class="fa fa-tag" aria-hidden="true"></i> Properties</h3>
+<ul class="post-list">
+  
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-07-19T00:00:00+01:00">July 19, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-07-19-ReadOnly-Class-Properties/">Powershell Classes with readonly properties</a></li>
+  
+  </ul>
+
+<h3 id="Scheduled Tasks"><i class="fa fa-tag" aria-hidden="true"></i> Scheduled Tasks</h3>
+<ul class="post-list">
+  
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-08-25T00:00:00+01:00">August 25, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-08-25-Environment-Vars-In-Scheduled-Tasks/">The Debugger Tales #1</a></li>
+  
+  </ul>
+
+<h3 id="The Debugger Tales"><i class="fa fa-tag" aria-hidden="true"></i> The Debugger Tales</h3>
+<ul class="post-list">
+  
+    <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<span class="entry-date"><time datetime="2017-08-25T00:00:00+01:00">August 25, 2017</time></span> <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;<a href="http://OCram85.github.io/2017-08-25-Environment-Vars-In-Scheduled-Tasks/">The Debugger Tales #1</a></li>
+  
+  </ul>
 
 
 	    
