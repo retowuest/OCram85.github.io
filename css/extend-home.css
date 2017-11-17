@@ -13,14 +13,20 @@ a.project-link:hover {
 }
 
 .project-card {
+    /*
+    background-image: url('/img/card-bgtexture.png');
+    background-attachment: scroll;
+    border-color: #aaa;
+    border-style: solid;
+    border-radius: 3px;
+    */
+    border-width: 1px;
+    padding: 10px;
+    width: 230px;
+    min-height: 300px;
     /* Need to fix horzontal alignment for grid system */
     float: none;
     margin: 0 auto 25px auto;
-}
-
-.project-card-front:hover,
-.project-card-back:hover {
-    box-shadow: 1px 1px 15px #bbb;
 }
 
 .project-card h3 {
@@ -31,48 +37,6 @@ a.project-link:hover {
     margin-top: 15px;
     margin-bottom: 10px;
     min-height: 4em;
-}
-
-.project-card-front,
-.project-card-back {
-    border-color: #aaa;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 10px;
-    padding: 10px;
-    width: 230px;
-    height: 340px;
-    background-image: url('/img/card-bgtexture.png');
-    background-attachment: scroll;
-    /* Need to fix horzontal alignment for grid system */
-    float: none;
-    margin: 0 auto 25px auto;
-
-    perspective: 600px;
-
-    backface-visibility: hidden;
-    transform-style: preserve3d;
-    transition: all 0.4s;
-}
-
-.project-card-back {
-    transform: rotateY(-180deg);
-    position: absolute;
-    top: 0px;
-    left: 15px;
-    padding: 10px;
-}
-
-.flipped .project-card-back {
-    transform: rotateY(0deg);
-    /* Need to fix horzontal alignment for grid system */
-    float: none;
-    margin: 0 auto 25px auto;
-
-}
-
-.flipped .project-card-front {
-    transform: rotateY(180deg);
 }
 
 .seperator {
